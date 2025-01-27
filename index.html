@@ -72,7 +72,7 @@
     <!-- Custom Script to Load Articles from GitHub Issues -->
     <script>
       async function fetchIssues() {
-        const response = await fetch('https://api.github.com/repos/<your-username>/my-blog/issues');
+        const response = await fetch('https://api.github.com/repos/GeorgeQii/my-blog/issues');
         const issues = await response.json();
         return issues;
       }
