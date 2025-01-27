@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <title>博客 - 北京愉佚科技发展有限公司</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="北京愉佚科技发展有限公司的博客，展示最新的技术文章和动态。">
+    <meta name="keywords" content="北京愉佚科技, 博客, 技术文章, 动态">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <a href="index.html" class="logo"><strong>北京愉佚科技发展有限公司</strong> <span>技术服务与创新</span></a>
+            <nav>
+                <a href="#menu">Menu</a>
+                <a href="index_en.html" class="language-switch">EN</a> <!-- 添加语言切换按钮 -->
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <ul class="links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">公司简介</a></li>
+                <li><a href="services.html">服务项目</a></li>
+                <li><a href="news.html">新闻动态</a></li> <!-- 添加新闻动态导航项 -->
+                <li><a href="contact.html">联系方式</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <div id="main" class="alt">
+
+            <!-- One -->
+            <section id="one">
+                <div class="inner">
+                    <header class="major">
+                        <h1>博客文章</h1>
+                    </header>
+                    <!-- Content will be dynamically loaded here -->
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <ul class="copyright">
+                    <li>&copy; 北京愉佚科技发展有限公司 2025</li>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Custom Script to Load Articles from GitHub Issues -->
+    <script>
+      async function fetchIssues() {
+        const response = await fetch('https://api.github.com/repos/<your-username>/my-blog/issues');
+        const issues = await response.json();
+        return issues;
+      }
+
+      async function renderArticles() {
+        const articles = await fetchIssues();
+        const mainSection = document.getElementById('main');
+        articles.forEach(article => {
+          const section = document.createElement('section');
+          section.id = 'one';
+          section.innerHTML = `
+            <div class="inner">
+              <header class="major">
+                <h1>${article.title}</h1>
+              </header>
+              <p>${article.body}</p>
+            </div>
+          `;
+          mainSection.appendChild(section);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', renderArticles);
+    </script>
+
+</body>
+</html>
